@@ -1,0 +1,58 @@
+<style>
+  .calendar-shell { border: 1px solid #d8dee8; border-radius: 14px; overflow: hidden; background: #fff; }
+  .calendar-toolbar { display:flex; align-items:center; justify-content:space-between; gap:12px; padding:12px 14px; border-bottom:1px solid #e6eaf0; }
+  .calendar-toolbar strong { color:#172033; }
+  .toolbar-actions { display:flex; gap:6px; }
+  .pill { border:1px solid #d8dee8; border-radius:8px; padding:5px 9px; font-size:11px; color:#44506a; }
+  .calendar-grid { display:grid; grid-template-columns:52px repeat(7, minmax(80px, 1fr)); min-width:720px; }
+  .corner,.day { height:48px; border-bottom:1px solid #dfe4ec; border-right:1px solid #edf0f5; display:flex; align-items:center; justify-content:center; font-size:11px; }
+  .day { flex-direction:column; color:#536078; }
+  .day b { color:#1c273b; font-size:13px; }
+  .time { height:48px; border-right:1px solid #dfe4ec; border-bottom:1px solid #edf0f5; font-size:10px; color:#7a8497; padding:4px 6px; text-align:right; }
+  .slot { height:48px; position:relative; border-right:1px solid #edf0f5; border-bottom:1px solid #edf0f5; background:linear-gradient(to bottom,transparent 49%,#f4f6f9 50%,transparent 51%); }
+  .event { position:absolute; inset:3px 4px; border-left:3px solid; border-radius:5px; padding:4px 5px; font-size:9px; line-height:1.25; overflow:hidden; z-index:2; }
+  .event.blue { background:#e8f0ff; border-color:#4f78db; color:#23427f; }
+  .event.green { background:#e7f7ef; border-color:#3b9b6d; color:#226344; }
+  .event.orange { background:#fff1df; border-color:#dc8730; color:#85511e; }
+  .event.purple { background:#f2eafe; border-color:#8a60cb; color:#56358a; }
+  .legend { display:flex; gap:12px; flex-wrap:wrap; margin-top:10px; color:#59657a; font-size:11px; }
+  .dot { width:8px; height:8px; display:inline-block; border-radius:50%; margin-right:4px; }
+  .mobile-note { margin-top:14px; border-radius:10px; background:#f5f7fb; padding:10px 12px; font-size:12px; color:#4f5c72; }
+</style>
+
+<h2>Agenda semanal no estilo Teams</h2>
+<p class="subtitle">Uma semana completa em colunas; horários descem verticalmente. Este é o layout-base recomendado para desktop.</p>
+
+<div class="mockup">
+  <div class="mockup-header">Semana de 24 a 30 de agosto</div>
+  <div class="mockup-body" style="overflow-x:auto;padding:0">
+    <div class="calendar-shell">
+      <div class="calendar-toolbar">
+        <div class="toolbar-actions"><span class="pill">‹</span><span class="pill">Hoje</span><span class="pill">›</span></div>
+        <strong>24–30 ago. 2026</strong>
+        <div class="toolbar-actions"><span class="pill">Todos os profissionais ▾</span><span class="pill">+ Agendamento</span></div>
+      </div>
+      <div class="calendar-grid">
+        <div class="corner"></div>
+        <div class="day"><span>SEG</span><b>24</b></div><div class="day"><span>TER</span><b>25</b></div><div class="day"><span>QUA</span><b>26</b></div><div class="day"><span>QUI</span><b>27</b></div><div class="day"><span>SEX</span><b>28</b></div><div class="day"><span>SÁB</span><b>29</b></div><div class="day"><span>DOM</span><b>30</b></div>
+        <div class="time">08:00</div><div class="slot"></div><div class="slot"><div class="event blue">08:00 · Maria<br>Ana · Corte</div></div><div class="slot"></div><div class="slot"></div><div class="slot"><div class="event orange">08:30 · João<br>Bruno</div></div><div class="slot"></div><div class="slot"></div>
+        <div class="time">09:00</div><div class="slot"><div class="event green">09:00 · Carlos<br>Luiza · Consulta</div></div><div class="slot"></div><div class="slot"></div><div class="slot"><div class="event purple">09:30 · Beatriz<br>Clara</div></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        <div class="time">10:00</div><div class="slot"></div><div class="slot"></div><div class="slot"><div class="event blue">10:00 · Pedro<br>Ana · Serviço</div></div><div class="slot"></div><div class="slot"></div><div class="slot"><div class="event green">10:30 · Paula<br>Luiza</div></div><div class="slot"></div>
+        <div class="time">11:00</div><div class="slot"></div><div class="slot"><div class="event orange">11:00 · Fernanda<br>Bruno</div></div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div><div class="slot"></div>
+        <div class="time">12:00</div><div class="slot" style="background:#fafafa"></div><div class="slot" style="background:#fafafa"></div><div class="slot" style="background:#fafafa"></div><div class="slot" style="background:#fafafa"></div><div class="slot" style="background:#fafafa"></div><div class="slot" style="background:#fafafa"></div><div class="slot" style="background:#fafafa"></div>
+      </div>
+    </div>
+    <div class="legend"><span><i class="dot" style="background:#4f78db"></i>Ana</span><span><i class="dot" style="background:#dc8730"></i>Bruno</span><span><i class="dot" style="background:#3b9b6d"></i>Luiza</span><span><i class="dot" style="background:#8a60cb"></i>Clara</span></div>
+  </div>
+</div>
+
+<div class="mobile-note"><strong>Responsividade:</strong> em telas pequenas, a recomendação é mostrar um dia por vez, com navegação entre datas. Espremer sete colunas no celular tornaria os cartões ilegíveis. A PWA manterá a mesma aplicação React/Inertia, adaptando apenas o layout.</div>
+
+<div class="options">
+  <div class="option" data-choice="approve_week_layout" onclick="toggleSelect(this)">
+    <div class="letter">A</div><div class="content"><h3>Aprovar esta direção</h3><p>Semana completa no desktop, um dia por vez no celular e cores por profissional.</p></div>
+  </div>
+  <div class="option" data-choice="revise_week_layout" onclick="toggleSelect(this)">
+    <div class="letter">B</div><div class="content"><h3>Quero ajustar</h3><p>Manter a ideia da grade, mas revisar agrupamento, cores ou comportamento móvel.</p></div>
+  </div>
+</div>
