@@ -4,8 +4,6 @@ O Agenda Pro é uma aplicação web para estabelecimentos que trabalham com serv
 
 O projeto nasceu para atender um estúdio de maquiagem, mas seu domínio foi ampliado para também servir a salões, barbearias, clínicas de estética, consultórios e outros prestadores com uma dinâmica de agenda semelhante.
 
-> **Estado atual:** o projeto está em fase inicial de desenvolvimento. O projeto foi recriado sem starter kit e utiliza Blade. Atualmente há a página de boas-vindas padrão do Laravel; autenticação, módulos de negócio e PWA ainda serão implementados.
-
 ## Objetivo do MVP
 
 Cada instalação do Agenda Pro atenderá um único estabelecimento. O MVP será um sistema interno, usado pela equipe do negócio, sem cadastro público de usuários ou autoagendamento por clientes.
@@ -74,7 +72,7 @@ no_show
 
 ## Agenda e experiência de uso
 
-No desktop, a agenda será apresentada como uma grade semanal inspirada no Microsoft Teams:
+No desktop, a agenda é apresentada como uma grade semanal inspirada no Microsoft Teams:
 
 - dias da semana organizados em colunas;
 - horários dispostos verticalmente;
@@ -82,7 +80,7 @@ No desktop, a agenda será apresentada como uma grade semanal inspirada no Micro
 - cores para identificar profissionais;
 - filtro por profissional e navegação entre semanas.
 
-No celular, a interface mostrará um dia por vez para preservar a legibilidade.
+No celular, a interface mostra um dia por vez para preservar a legibilidade.
 
 A aplicação será uma PWA instalável. O primeiro escopo da PWA inclui manifesto, ícones, modo `standalone`, cache de arquivos estáticos, aviso de atualização e uma experiência básica sem conexão. Operações que alteram a agenda dependerão da rede e não serão enfileiradas offline, evitando reservas baseadas em dados desatualizados.
 
@@ -101,7 +99,7 @@ Blade + HTML/CSS/JavaScript
         ↓
       Eloquent
         ↓
-SQLite (atual) / PostgreSQL (planejado)
+PostgreSQL 18
 ```
 
 O código seguirá uma abordagem de monólito modular pragmático, com quatro limites conceituais:
@@ -121,11 +119,11 @@ Controllers coordenam requisições, Form Requests validam o formato da entrada 
 - PHP: requisito da aplicação `^8.3`; ambiente atual com PHP 8.5;
 - Tailwind CSS 4;
 - JavaScript e Vite 8;
-- Eloquent ORM e SQLite no ambiente inicial;
+- Eloquent ORM e PostgreSQL 18 via Docker Compose;
 - Pest 5 e Laravel Pint;
 - Laravel Boost para suporte às ferramentas de desenvolvimento.
 
-As dependências de desenvolvimento devem respeitar os requisitos do `composer.lock`; use PHP 8.5 para reproduzir o ambiente atual. PostgreSQL permanece previsto para o módulo de agenda e seus testes de concorrência, mas ainda não há configuração Docker Compose no projeto. Fortify, React, Inertia e TypeScript não fazem parte da base atual.
+As dependências de desenvolvimento devem respeitar os requisitos do `composer.lock`; use PHP 8.5 para reproduzir o ambiente atual. O PostgreSQL é executado pelo serviço `postgres` do `compose.yaml`. A suíte atual usa SQLite em memória, configurado no `phpunit.xml`; testes específicos de concorrência deverão usar PostgreSQL. Fortify, React, Inertia e TypeScript não fazem parte da base atual.
 
 ## Fora do MVP
 
@@ -144,7 +142,8 @@ Para manter o primeiro ciclo enxuto, não fazem parte do MVP:
 
 ### Pré-requisitos
 
-- PHP 8.5 com as extensões exigidas pelas dependências, incluindo SQLite;
+- PHP 8.5 com as extensões exigidas pelas dependências, incluindo `pdo_pgsql` e `pdo_sqlite` (testes);
+- Docker com Docker Compose;
 - Composer 2;
 - Node.js compatível com Vite 8 (22.12+ na linha 22) e npm.
 
@@ -158,10 +157,25 @@ Para manter o primeiro ciclo enxuto, não fazem parte do MVP:
     php artisan key:generate
     ```
 
-2. Mantenha `DB_CONNECTION=sqlite` no `.env`, crie o arquivo do banco se necessário e execute as migrations:
+2. Configure o banco no `.env` (o `.env.example` já contém estes valores para desenvolvimento):
+
+    ```dotenv
+    DB_CONNECTION=pgsql
+    DB_HOST=127.0.0.1
+    DB_PORT=5432
+    DB_DATABASE=agendapro
+    DB_USERNAME=agendapro
+    DB_PASSWORD=agendapro_dev
+    BUSINESS_TIMEZONE=America/Sao_Paulo
+    ```
+
+    `BUSINESS_TIMEZONE` define o fuso dos bloqueios exibidos e informados nos formulários. Os instantes são armazenados em UTC; a disponibilidade semanal continua representando horários locais recorrentes.
+
+    O `.env` local pode usar uma senha diferente. Laravel e Docker Compose leem a mesma configuração. Inicie o banco e execute as migrations:
 
     ```bash
-    touch database/database.sqlite
+    docker compose up -d --wait postgres
+    php artisan config:clear
     php artisan migrate
     ```
 
@@ -180,44 +194,23 @@ Para manter o primeiro ciclo enxuto, não fazem parte do MVP:
 
 O script de desenvolvimento usa `php artisan dev`. Para iniciar os processos separadamente, use `php artisan serve` e `npm run dev` em terminais distintos.
 
-O `composer setup` também reúne instalação, geração de chave, migrations e build. Use-o na preparação inicial; ele gera uma nova chave mesmo quando já existe um `.env`.
+Inicie o PostgreSQL antes de executar `composer setup`, que reúne instalação, geração de chave, migrations e build. Use-o na preparação inicial; ele gera uma nova chave mesmo quando já existe um `.env`.
 
-### Estrutura atual
-
-- `routes/web.php`: rota inicial que retorna a view `welcome`;
-- `resources/views/`: templates Blade;
-- `resources/css/app.css`: entrada de estilos;
-- `resources/js/app.js`: entrada JavaScript;
-- `app/Models/User.php`: model de usuário padrão;
-- `database/migrations/`: migrations padrão de usuários, cache e filas;
-- `tests/Feature/` e `tests/Unit/`: testes iniciais em Pest.
-
-## Qualidade e testes
-
-Execute os testes e compile os assets com os comandos disponíveis:
+### Comandos do banco
 
 ```bash
-composer test
-npm run build
+docker compose up -d --wait postgres  # iniciar e aguardar o banco
+docker compose ps                    # consultar o estado
+docker compose logs postgres         # consultar logs
+docker compose stop postgres         # parar sem remover os dados
+php artisan migrate:status           # consultar migrations
 ```
 
-Para formatar código PHP:
+O Laravel continua rodando na máquina e acessa `127.0.0.1`. Se a porta 5432 estiver ocupada, altere `DB_PORT` no `.env`, recrie o serviço com `docker compose up -d --wait postgres` e execute `php artisan config:clear`.
 
-```bash
-vendor/bin/pint
-```
+Os dados persistem no volume `postgres_data`. O comando `docker compose down` preserva esse volume; `docker compose down -v` apaga os dados. Credenciais de inicialização só são aplicadas ao criar o volume: alterar a senha no `.env` depois disso exige também alterá-la no PostgreSQL.
 
-Ainda não há script `composer ci:check`, análise PHPStan ou verificações de ESLint, Prettier e TypeScript configuradas.
-
-O desenvolvimento dos módulos deve seguir ciclos curtos:
-
-```text
-entender a regra
-→ escrever um teste que falha
-→ implementar o mínimo necessário
-→ verificar
-→ revisar
-```
+O volume é montado em `/var/lib/postgresql`, conforme a [imagem oficial do PostgreSQL 18](https://hub.docker.com/_/postgres).
 
 ## Ordem planejada de implementação
 
@@ -235,8 +228,6 @@ entender a regra
 12. identidade visual e refinamentos do dashboard.
 
 ## Documentação do projeto
+ - [Protótipo de telas no Figma](https://www.figma.com/make/k6xJEPicQUcUOQwdQX1bT1/app-agenda-pro?t=Q2CukSQsd3SrlbiL-1)
 
-- [Design completo do MVP](docs/superpowers/specs/2026-08-28-agenda-pro-multissetorial-design.md)
-- [Roteiro da autenticação interna com Blade](docs/superpowers/plans/2026-08-28-internal-authentication.md)
-
-Esses documentos registram as decisões atuais. Eles devem ser atualizados quando uma regra de negócio ou o escopo do MVP mudar.
+ - [Planejamento técnico do MVP](docs/superpowers/specs/2026-08-28-agenda-pro-multissetorial-design.md)

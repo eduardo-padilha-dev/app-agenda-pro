@@ -55,7 +55,7 @@ Blade + HTML/CSS/JavaScript
     PostgreSQL
 ```
 
-O ambiente inicial usa SQLite. PostgreSQL é o banco planejado para a agenda e para validar o protocolo de concorrência descrito na seção 10; sua configuração ainda será adicionada.
+O ambiente de desenvolvimento usa PostgreSQL 18 via Docker Compose, configurado em `compose.yaml`. O Laravel roda na máquina e se conecta pela interface local. A suíte atual usa SQLite em memória; a validação do protocolo de concorrência da seção 10 deverá usar PostgreSQL.
 
 As páginas serão renderizadas no servidor, com formulários web e redirecionamentos que apresentam mensagens e erros de validação. A autenticação interna ainda será implementada com os recursos de sessão do Laravel, sem presumir funcionalidades de um starter kit ou Fortify instalado.
 
@@ -117,7 +117,7 @@ Client
 - phone
 - email opcional
 - notes opcional
-- active
+- softDeletes
 
 Professional
 - name
