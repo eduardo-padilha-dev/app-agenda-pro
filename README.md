@@ -212,6 +212,57 @@ Os dados persistem no volume `postgres_data`. O comando `docker compose down` pr
 
 O volume é montado em `/var/lib/postgresql`, conforme a [imagem oficial do PostgreSQL 18](https://hub.docker.com/_/postgres).
 
+### Estrutura atual
+
+- `routes/web.php`: login, logout, cadastros, disponibilidade semanal, bloqueios, criação, reagendamento, lista e transições de agendamentos, agenda real e pré-visualização do protótipo;
+- `app/Http/Controllers/CalendarController.php`: consulta e prepara agendamentos, bloqueios, disponibilidades e profissionais do período exibido;
+- `resources/views/`: layouts, componentes e telas Blade reais e do protótipo;
+- `resources/prototype/data.json`: dados fictícios usados somente na pré-visualização;
+- `resources/css/app.css`: entrada de estilos;
+- `resources/js/app.js`: entrada JavaScript;
+- `app/Models/`: models de usuário, cliente, profissional, serviço, disponibilidade, bloqueio, agendamento e item;
+- `app/Enums/AppointmentStatus.php`: status previstos para os agendamentos;
+- `app/Domain/Scheduling/AppointmentConflictChecker.php`: regras de disponibilidade, associação e conflitos usadas pelas futuras operações de agendamento;
+- `app/Actions/Scheduling/CreateAppointment.php`: cria agendamentos e itens em uma transação, com bloqueios de concorrência e snapshots dos serviços;
+- `app/Actions/Scheduling/ChangeAppointmentStatus.php`: aplica as transições permitidas e registra o cancelamento;
+- `database/migrations/`: migrations de usuários, cadastros, disponibilidades, bloqueios, agendamentos, cache e filas;
+- `tests/Feature/` e `tests/Unit/`: testes em Pest para autenticação, cadastros, disponibilidade, bloqueios e regras dos agendamentos.
+
+## Pré-visualização das telas
+
+Com o ambiente iniciado por `composer dev`, acesse `/prototipo` na aplicação local. A navegação inclui login e recuperação de senha, agenda semanal (diária no celular), agendamentos, clientes, profissionais e serviços.
+
+As views ficam em `resources/views/`, organizadas por tela, com layouts e componentes compartilhados. Os formulários incluem criação e edição, detalhes e reagendamento, disponibilidade semanal e bloqueios. Busca, filtros, navegação e abertura de painéis usam JavaScript simples, sem React ou Inertia.
+
+Essa pré-visualização usa dados fictícios do protótipo original em `prototype_design/`. Seus formulários não autenticam usuários, enviam emails ou salvam alterações. As telas reais de login, clientes, profissionais, serviços e agendamentos usam autenticação, validação e persistência. A disponibilidade semanal e os bloqueios excepcionais são configurados na tela real de profissionais. A agenda em `/calendar` consulta os agendamentos e bloqueios persistidos; os dados fictícios permanecem restritos a `/prototipo`.
+
+## Qualidade e testes
+
+Execute os testes e compile os assets com os comandos disponíveis:
+
+```bash
+composer test
+npm run build
+```
+
+Para formatar código PHP:
+
+```bash
+vendor/bin/pint
+```
+
+Ainda não há script `composer ci:check`, análise PHPStan ou verificações de ESLint, Prettier e TypeScript configuradas.
+
+O desenvolvimento dos módulos deve seguir ciclos curtos:
+
+```text
+entender a regra
+→ escrever um teste que falha
+→ implementar o mínimo necessário
+→ verificar
+→ revisar
+```
+
 ## Ordem planejada de implementação
 
 1. autenticação interna;
@@ -228,6 +279,8 @@ O volume é montado em `/var/lib/postgresql`, conforme a [imagem oficial do Post
 12. identidade visual e refinamentos do dashboard.
 
 ## Documentação do projeto
- - [Protótipo de telas no Figma](https://www.figma.com/make/k6xJEPicQUcUOQwdQX1bT1/app-agenda-pro?t=Q2CukSQsd3SrlbiL-1)
 
- - [Planejamento técnico do MVP](docs/superpowers/specs/2026-08-28-agenda-pro-multissetorial-design.md)
+- [Design completo do MVP](docs/superpowers/specs/2026-08-28-agenda-pro-multissetorial-design.md)
+- [Roteiro da autenticação interna com Blade](docs/superpowers/plans/2026-08-28-internal-authentication.md)
+
+Esses documentos registram as decisões atuais. Eles devem ser atualizados quando uma regra de negócio ou o escopo do MVP mudar.

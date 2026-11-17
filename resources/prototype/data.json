@@ -1,0 +1,710 @@
+{
+  "appointments": [
+    {
+      "id": "a1",
+      "clientId": "c1",
+      "status": "confirmed",
+      "createdAt": "2026-09-14T11:00:00.000Z",
+      "notes": "Formatura — make precisa durar a noite toda.",
+      "items": [
+        {
+          "id": "i1a",
+          "serviceId": "s1",
+          "professionalId": "p1",
+          "startTime": "2026-09-14T12:00:00.000Z",
+          "serviceNameSnapshot": "Maquiagem Completa",
+          "durationSnapshot": 90,
+          "priceSnapshot": 180
+        },
+        {
+          "id": "i1b",
+          "serviceId": "s3",
+          "professionalId": "p1",
+          "startTime": "2026-09-14T13:30:00.000Z",
+          "serviceNameSnapshot": "Design de Sobrancelha",
+          "durationSnapshot": 30,
+          "priceSnapshot": 55
+        }
+      ]
+    },
+    {
+      "id": "a2",
+      "clientId": "c2",
+      "status": "scheduled",
+      "createdAt": "2026-09-14T11:00:00.000Z",
+      "items": [
+        {
+          "id": "i2a",
+          "serviceId": "s4",
+          "professionalId": "p2",
+          "startTime": "2026-09-14T12:00:00.000Z",
+          "serviceNameSnapshot": "Corte Feminino",
+          "durationSnapshot": 60,
+          "priceSnapshot": 95
+        }
+      ]
+    },
+    {
+      "id": "a3",
+      "clientId": "c3",
+      "status": "completed",
+      "createdAt": "2026-09-07T11:00:00.000Z",
+      "items": [
+        {
+          "id": "i3a",
+          "serviceId": "s7",
+          "professionalId": "p3",
+          "startTime": "2026-09-14T12:00:00.000Z",
+          "serviceNameSnapshot": "Manicure",
+          "durationSnapshot": 45,
+          "priceSnapshot": 55
+        },
+        {
+          "id": "i3b",
+          "serviceId": "s8",
+          "professionalId": "p3",
+          "startTime": "2026-09-14T12:45:00.000Z",
+          "serviceNameSnapshot": "Pedicure",
+          "durationSnapshot": 60,
+          "priceSnapshot": 65
+        }
+      ]
+    },
+    {
+      "id": "a4",
+      "clientId": "c4",
+      "status": "confirmed",
+      "createdAt": "2026-09-14T13:00:00.000Z",
+      "notes": "Quer tons cobre no cabelo.",
+      "items": [
+        {
+          "id": "i4a",
+          "serviceId": "s5",
+          "professionalId": "p2",
+          "startTime": "2026-09-15T13:00:00.000Z",
+          "serviceNameSnapshot": "Coloração",
+          "durationSnapshot": 120,
+          "priceSnapshot": 230
+        }
+      ]
+    },
+    {
+      "id": "a5",
+      "clientId": "c5",
+      "status": "scheduled",
+      "createdAt": "2026-09-15T12:00:00.000Z",
+      "items": [
+        {
+          "id": "i5a",
+          "serviceId": "s2",
+          "professionalId": "p1",
+          "startTime": "2026-09-15T17:00:00.000Z",
+          "serviceNameSnapshot": "Maquiagem Social",
+          "durationSnapshot": 60,
+          "priceSnapshot": 120
+        }
+      ]
+    },
+    {
+      "id": "a6",
+      "clientId": "c6",
+      "status": "scheduled",
+      "createdAt": "2026-09-15T14:00:00.000Z",
+      "items": [
+        {
+          "id": "i6a",
+          "serviceId": "s9",
+          "professionalId": "p3",
+          "startTime": "2026-09-16T13:00:00.000Z",
+          "serviceNameSnapshot": "Spa dos Pés",
+          "durationSnapshot": 90,
+          "priceSnapshot": 110
+        }
+      ]
+    },
+    {
+      "id": "a7",
+      "clientId": "c1",
+      "status": "confirmed",
+      "createdAt": "2026-09-16T11:00:00.000Z",
+      "items": [
+        {
+          "id": "i7a",
+          "serviceId": "s4",
+          "professionalId": "p2",
+          "startTime": "2026-09-16T14:00:00.000Z",
+          "serviceNameSnapshot": "Corte Feminino",
+          "durationSnapshot": 60,
+          "priceSnapshot": 95
+        }
+      ]
+    },
+    {
+      "id": "a8",
+      "clientId": "c2",
+      "status": "cancelled",
+      "createdAt": "2026-09-16T12:00:00.000Z",
+      "cancelledAt": "2026-09-17T10:00:00.000Z",
+      "cancellationReason": "Cliente remarcou para semana seguinte.",
+      "items": [
+        {
+          "id": "i8a",
+          "serviceId": "s1",
+          "professionalId": "p1",
+          "startTime": "2026-09-17T12:00:00.000Z",
+          "serviceNameSnapshot": "Maquiagem Completa",
+          "durationSnapshot": 90,
+          "priceSnapshot": 180
+        }
+      ]
+    },
+    {
+      "id": "a9",
+      "clientId": "c3",
+      "status": "no_show",
+      "createdAt": "2026-09-16T13:00:00.000Z",
+      "items": [
+        {
+          "id": "i9a",
+          "serviceId": "s7",
+          "professionalId": "p3",
+          "startTime": "2026-09-17T17:00:00.000Z",
+          "serviceNameSnapshot": "Manicure",
+          "durationSnapshot": 45,
+          "priceSnapshot": 55
+        }
+      ]
+    },
+    {
+      "id": "a10",
+      "clientId": "c4",
+      "status": "scheduled",
+      "createdAt": "2026-09-17T17:00:00.000Z",
+      "items": [
+        {
+          "id": "i10a",
+          "serviceId": "s7",
+          "professionalId": "p3",
+          "startTime": "2026-09-18T12:00:00.000Z",
+          "serviceNameSnapshot": "Manicure",
+          "durationSnapshot": 45,
+          "priceSnapshot": 55
+        },
+        {
+          "id": "i10b",
+          "serviceId": "s3",
+          "professionalId": "p1",
+          "startTime": "2026-09-18T12:45:00.000Z",
+          "serviceNameSnapshot": "Design de Sobrancelha",
+          "durationSnapshot": 30,
+          "priceSnapshot": 55
+        }
+      ]
+    },
+    {
+      "id": "a11",
+      "clientId": "c5",
+      "status": "confirmed",
+      "createdAt": "2026-09-17T18:00:00.000Z",
+      "items": [
+        {
+          "id": "i11a",
+          "serviceId": "s6",
+          "professionalId": "p2",
+          "startTime": "2026-09-18T13:00:00.000Z",
+          "serviceNameSnapshot": "Escova Progressiva",
+          "durationSnapshot": 90,
+          "priceSnapshot": 180
+        }
+      ]
+    },
+    {
+      "id": "a12",
+      "clientId": "c6",
+      "status": "scheduled",
+      "createdAt": "2026-09-18T12:00:00.000Z",
+      "items": [
+        {
+          "id": "i12a",
+          "serviceId": "s2",
+          "professionalId": "p1",
+          "startTime": "2026-09-19T13:00:00.000Z",
+          "serviceNameSnapshot": "Maquiagem Social",
+          "durationSnapshot": 60,
+          "priceSnapshot": 120
+        }
+      ]
+    }
+  ],
+  "availabilities": [
+    {
+      "professionalId": "p1",
+      "dayOfWeek": 1,
+      "intervals": [
+        {
+          "start": "09:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:00",
+          "end": "18:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p1",
+      "dayOfWeek": 2,
+      "intervals": [
+        {
+          "start": "09:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:00",
+          "end": "18:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p1",
+      "dayOfWeek": 3,
+      "intervals": [
+        {
+          "start": "09:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:00",
+          "end": "18:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p1",
+      "dayOfWeek": 4,
+      "intervals": [
+        {
+          "start": "09:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:00",
+          "end": "18:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p1",
+      "dayOfWeek": 5,
+      "intervals": [
+        {
+          "start": "09:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:00",
+          "end": "18:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p1",
+      "dayOfWeek": 6,
+      "intervals": [
+        {
+          "start": "09:00",
+          "end": "14:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p2",
+      "dayOfWeek": 1,
+      "intervals": [
+        {
+          "start": "10:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:30",
+          "end": "19:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p2",
+      "dayOfWeek": 2,
+      "intervals": [
+        {
+          "start": "10:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:30",
+          "end": "19:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p2",
+      "dayOfWeek": 3,
+      "intervals": [
+        {
+          "start": "10:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:30",
+          "end": "19:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p2",
+      "dayOfWeek": 4,
+      "intervals": [
+        {
+          "start": "10:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:30",
+          "end": "19:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p2",
+      "dayOfWeek": 5,
+      "intervals": [
+        {
+          "start": "10:00",
+          "end": "12:00"
+        },
+        {
+          "start": "13:30",
+          "end": "19:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p3",
+      "dayOfWeek": 2,
+      "intervals": [
+        {
+          "start": "08:00",
+          "end": "12:30"
+        },
+        {
+          "start": "13:30",
+          "end": "17:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p3",
+      "dayOfWeek": 3,
+      "intervals": [
+        {
+          "start": "08:00",
+          "end": "12:30"
+        },
+        {
+          "start": "13:30",
+          "end": "17:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p3",
+      "dayOfWeek": 4,
+      "intervals": [
+        {
+          "start": "08:00",
+          "end": "12:30"
+        },
+        {
+          "start": "13:30",
+          "end": "17:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p3",
+      "dayOfWeek": 5,
+      "intervals": [
+        {
+          "start": "08:00",
+          "end": "12:30"
+        },
+        {
+          "start": "13:30",
+          "end": "17:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p3",
+      "dayOfWeek": 6,
+      "intervals": [
+        {
+          "start": "08:00",
+          "end": "12:30"
+        },
+        {
+          "start": "13:30",
+          "end": "17:00"
+        }
+      ]
+    },
+    {
+      "professionalId": "p3",
+      "dayOfWeek": 1,
+      "intervals": [
+        {
+          "start": "09:00",
+          "end": "12:30"
+        },
+        {
+          "start": "13:30",
+          "end": "17:00"
+        }
+      ]
+    }
+  ],
+  "blocks": [
+    {
+      "id": "b1",
+      "professionalId": "p2",
+      "startTime": "2026-09-16T16:00:00.000Z",
+      "endTime": "2026-09-16T19:00:00.000Z",
+      "reason": "Consulta médica"
+    },
+    {
+      "id": "b2",
+      "professionalId": "p1",
+      "startTime": "2026-09-18T15:00:00.000Z",
+      "endTime": "2026-09-18T16:00:00.000Z",
+      "reason": "Almoço especial"
+    }
+  ],
+  "clients": [
+    {
+      "id": "c1",
+      "name": "Ana Rodrigues",
+      "phone": "(11) 98877-1234",
+      "email": "ana.rodrigues@email.com",
+      "active": true
+    },
+    {
+      "id": "c2",
+      "name": "Juliana Costa",
+      "phone": "(11) 97766-5678",
+      "email": "juliana.costa@email.com",
+      "notes": "Prefere horários no período da tarde.",
+      "active": true
+    },
+    {
+      "id": "c3",
+      "name": "Marina Ferreira",
+      "phone": "(11) 96655-9012",
+      "active": true
+    },
+    {
+      "id": "c4",
+      "name": "Patricia Alves",
+      "phone": "(11) 95544-3456",
+      "email": "patricia.alves@email.com",
+      "active": true
+    },
+    {
+      "id": "c5",
+      "name": "Fernanda Souza",
+      "phone": "(11) 94433-7890",
+      "notes": "Alergia a látex — não usar luvas de látex.",
+      "active": true
+    },
+    {
+      "id": "c6",
+      "name": "Carla Mendes",
+      "phone": "(11) 93322-1234",
+      "active": true
+    },
+    {
+      "id": "c7",
+      "name": "Sandra Lima",
+      "phone": "(11) 92211-5678",
+      "active": false
+    }
+  ],
+  "professionals": [
+    {
+      "id": "p1",
+      "name": "Camila Santos",
+      "phone": "(11) 99801-2345",
+      "email": "camila@agendapro.local",
+      "notes": "Especialista em maquiagem artística e noivas.",
+      "active": true,
+      "color": "#0d9488",
+      "serviceIds": [
+        "s1",
+        "s2",
+        "s3"
+      ]
+    },
+    {
+      "id": "p2",
+      "name": "Rafael Oliveira",
+      "phone": "(11) 97654-3210",
+      "email": "rafael@agendapro.local",
+      "notes": "Cabeleireiro com foco em coloração e tratamento capilar.",
+      "active": true,
+      "color": "#7c3aed",
+      "serviceIds": [
+        "s4",
+        "s5",
+        "s6"
+      ]
+    },
+    {
+      "id": "p3",
+      "name": "Beatriz Lima",
+      "phone": "(11) 98765-0011",
+      "email": "beatriz@agendapro.local",
+      "notes": "Especialista em nail art e cuidados com as mãos.",
+      "active": true,
+      "color": "#db2777",
+      "serviceIds": [
+        "s7",
+        "s8",
+        "s9"
+      ]
+    },
+    {
+      "id": "p4",
+      "name": "Lucas Mendes",
+      "phone": "(11) 91234-5678",
+      "active": false,
+      "color": "#d97706",
+      "serviceIds": [
+        "s3",
+        "s7"
+      ]
+    }
+  ],
+  "services": [
+    {
+      "id": "s1",
+      "name": "Maquiagem Completa",
+      "description": "Make profissional para eventos e festas.",
+      "durationMinutes": 90,
+      "price": 180,
+      "active": true,
+      "professionalIds": [
+        "p1"
+      ]
+    },
+    {
+      "id": "s2",
+      "name": "Maquiagem Social",
+      "description": "Make para ocasiões do dia a dia e reuniões.",
+      "durationMinutes": 60,
+      "price": 120,
+      "active": true,
+      "professionalIds": [
+        "p1"
+      ]
+    },
+    {
+      "id": "s3",
+      "name": "Design de Sobrancelha",
+      "description": "Modelagem com pinça e henna opcional.",
+      "durationMinutes": 30,
+      "price": 55,
+      "active": true,
+      "professionalIds": [
+        "p1",
+        "p4"
+      ]
+    },
+    {
+      "id": "s4",
+      "name": "Corte Feminino",
+      "description": "Corte, lavagem e finalização.",
+      "durationMinutes": 60,
+      "price": 95,
+      "active": true,
+      "professionalIds": [
+        "p2"
+      ]
+    },
+    {
+      "id": "s5",
+      "name": "Coloração",
+      "description": "Coloração completa com produto profissional.",
+      "durationMinutes": 120,
+      "price": 230,
+      "active": true,
+      "professionalIds": [
+        "p2"
+      ]
+    },
+    {
+      "id": "s6",
+      "name": "Escova Progressiva",
+      "description": "Alisamento e selagem dos fios.",
+      "durationMinutes": 90,
+      "price": 180,
+      "active": true,
+      "professionalIds": [
+        "p2"
+      ]
+    },
+    {
+      "id": "s7",
+      "name": "Manicure",
+      "description": "Cuidado completo das unhas das mãos.",
+      "durationMinutes": 45,
+      "price": 55,
+      "active": true,
+      "professionalIds": [
+        "p3",
+        "p4"
+      ]
+    },
+    {
+      "id": "s8",
+      "name": "Pedicure",
+      "description": "Cuidado completo das unhas dos pés.",
+      "durationMinutes": 60,
+      "price": 65,
+      "active": true,
+      "professionalIds": [
+        "p3"
+      ]
+    },
+    {
+      "id": "s9",
+      "name": "Spa dos Pés",
+      "description": "Pedicure + esfoliação + hidratação.",
+      "durationMinutes": 90,
+      "price": 110,
+      "active": true,
+      "professionalIds": [
+        "p3"
+      ]
+    },
+    {
+      "id": "s10",
+      "name": "Gel nas Unhas",
+      "description": "Aplicação de gel nas unhas das mãos.",
+      "durationMinutes": 75,
+      "price": 90,
+      "active": false,
+      "professionalIds": [
+        "p3"
+      ]
+    }
+  ],
+  "weekStart": "2026-09-14T03:00:00.000Z"
+}
